@@ -18,11 +18,6 @@ export declare class AuthService {
     }>;
     loginWithGoogle(username: string, email: string): Promise<{
         access_token: string;
-        user: import("mongoose").Document<unknown, {}, UserDocument> & User & import("mongoose").Document<unknown, any, any> & Required<{
-            _id: unknown;
-        }> & {
-            __v: number;
-        };
     }>;
     generateAccessToken(user: UserDocument | DoctorDocument): string;
 }

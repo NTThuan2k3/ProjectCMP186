@@ -4,4 +4,5 @@ export declare class CreateAppointmentDto {
     hospitalName: string;
     appointmentDate: string;
     appointmentTime: string;
+    status: boolean;
 }

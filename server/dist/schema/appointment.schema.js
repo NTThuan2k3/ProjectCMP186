@@ -41,6 +41,10 @@ __decorate([
     (0, mongoose_1.Prop)({ default: Date.now }),
     __metadata("design:type", Date)
 ], Appointment.prototype, "createdAt", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: false }),
+    __metadata("design:type", Boolean)
+], Appointment.prototype, "status", void 0);
 exports.Appointment = Appointment = __decorate([
     (0, mongoose_1.Schema)()
 ], Appointment);

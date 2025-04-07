@@ -1,35 +1,49 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SecureStorageService {
-  final _storage = const FlutterSecureStorage();
-
-  // Save access token
-  Future<void> saveAccessToken(String token) async {
-    await _storage.write(key: 'accessToken', value: token);
+  final _secureStorage = FlutterSecureStorage();
+  // Lưu token vào Secure Storage
+  Future<void> saveAccessToken(String accessToken) async {
+    await _secureStorage.write(key: 'access_token', value: accessToken);
   }
 
-  // Retrieve access token
+  // Lấy token từ Secure Storage
+  Future<String?> getToken() async {
+    return await _secureStorage.read(key: 'jwt_token');
+  }
+
+  Future<void> saveRefreshToken(String refreshToken) async {
+    await _secureStorage.write(key: 'refresh_token', value: refreshToken);
+  }
+
   Future<String?> getAccessToken() async {
-    return await _storage.read(key: 'accessToken');
+    return await _secureStorage.read(key: 'access_token');
   }
 
-  // Delete access token
-  Future<void> deleteAccessToken() async {
-    await _storage.delete(key: 'accessToken');
+  Future<String?> getRefreshToken() async {
+    return await _secureStorage.read(key: 'refresh_token');
   }
 
-  // Save any key-value pair
-  Future<void> saveData(String key, String value) async {
-    await _storage.write(key: key, value: value);
+  // Xóa token khỏi Secure Storage
+  Future<void> removeAccessToken() async {
+    await _secureStorage.delete(key: 'access_token');
   }
 
-  // Retrieve any value by key
-  Future<String?> getData(String key) async {
-    return await _storage.read(key: key);
+  Future<void> removeRefreshToken() async {
+    await _secureStorage.delete(key: 'refresh_token');
   }
 
-  // Delete any key-value pair
-  Future<void> deleteData(String key) async {
-    await _storage.delete(key: key);
-  }
+  //lưu id người dùng khi đăng nhập
+  // Future<void> saveUserId(String userId) async {
+  //   await _secureStorage.write(key: 'userId', value: userId);
+  // }
+
+  // Future<String?> getUserId() async {
+  //   return await _secureStorage.read(key: 'userId');
+  // }
+
+  //đăng xuất => xóa hết các token và id trong storage ||| này tham khảo !
+  // Future<void> deleteAll() async {
+  //   await _secureStorage.deleteAll();
+  // }
 }

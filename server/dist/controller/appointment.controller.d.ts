@@ -10,4 +10,7 @@ export declare class AppointmentController {
     create(createAppointmentDto: CreateAppointmentDto): Promise<import("../schema/appointment.schema").Appointment>;
     cancelAppointment(appointmentId: string): Promise<any>;
     updateAppointment(appointmentId: string, updateAppointmentDto: Partial<CreateAppointmentDto>): Promise<any>;
+    updateAppointmentStatus(appointmentId: string, updateAppointmentDto: {
+        status: boolean;
+    }): Promise<import("../schema/appointment.schema").Appointment>;
 }

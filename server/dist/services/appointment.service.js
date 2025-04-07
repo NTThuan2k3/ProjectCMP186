@@ -65,6 +65,13 @@ let AppointmentService = class AppointmentService {
         }
         return appointment;
     }
+    async updateAppointmentStatus(appointmentId, status) {
+        const appointment = await this.appointmentModel.findByIdAndUpdate(appointmentId, { status }, { new: true });
+        if (!appointment) {
+            throw new Error('Cuộc hẹn không tồn tại');
+        }
+        return appointment;
+    }
 };
 exports.AppointmentService = AppointmentService;
 exports.AppointmentService = AppointmentService = __decorate([

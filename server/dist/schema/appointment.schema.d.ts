@@ -9,6 +9,7 @@ export declare class Appointment {
     appointmentDate: Date;
     appointmentTime: string;
     createdAt: Date;
+    status: boolean;
 }
 export declare const AppointmentSchema: import("mongoose").Schema<Appointment, import("mongoose").Model<Appointment, any, any, any, Document<unknown, any, Appointment> & Appointment & {
     _id: Types.ObjectId;

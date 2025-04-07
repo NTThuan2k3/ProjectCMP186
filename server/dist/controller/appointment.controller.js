@@ -41,6 +41,9 @@ let AppointmentController = class AppointmentController {
     async updateAppointment(appointmentId, updateAppointmentDto) {
         return this.appointmentService.updateAppointment(appointmentId, updateAppointmentDto);
     }
+    async updateAppointmentStatus(appointmentId, updateAppointmentDto) {
+        return this.appointmentService.updateAppointmentStatus(appointmentId, updateAppointmentDto.status);
+    }
 };
 exports.AppointmentController = AppointmentController;
 __decorate([
@@ -92,6 +95,14 @@ __decorate([
     __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", Promise)
 ], AppointmentController.prototype, "updateAppointment", null);
+__decorate([
+    (0, common_1.Patch)(':appointmentId/status'),
+    __param(0, (0, common_1.Param)('appointmentId')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], AppointmentController.prototype, "updateAppointmentStatus", null);
 exports.AppointmentController = AppointmentController = __decorate([
     (0, common_1.Controller)('appointment'),
     __metadata("design:paramtypes", [appointment_service_1.AppointmentService])

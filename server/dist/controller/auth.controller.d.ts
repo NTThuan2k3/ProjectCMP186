@@ -22,10 +22,5 @@ export declare class AuthController {
         email: string;
     }): Promise<{
         access_token: string;
-        user: import("mongoose").Document<unknown, {}, import("../schema/user.schema").UserDocument> & import("../schema/user.schema").User & import("mongoose").Document<unknown, any, any> & Required<{
-            _id: unknown;
-        }> & {
-            __v: number;
-        };
     }>;
 }

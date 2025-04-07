@@ -27,21 +27,33 @@ let AuthService = class AuthService {
         this.jwtService = jwtService;
     }
     async register(username, password) {
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = new this.userModel({
-            username,
-            password: hashedPassword,
-        });
-        return newUser.save();
+        const user = await this.userModel.findOne({ username });
+        console.log(user);
+        if (user == null) {
+            const hashedPassword = await bcrypt.hash(password, 10);
+            const newUser = new this.userModel({
+                username,
+                password: hashedPassword,
+            });
+            return newUser.save();
+        }
+        else
+            throw new Error('User existed');
     }
     async login(username, password, role) {
         let user;
         if (role === 'user') {
             user = await this.userModel.findOne({ username });
+            if (!user) {
+                throw new Error('User not found');
+            }
         }
         else if (role === 'doctor') {
             let name = username;
             user = await this.doctorModel.findOne({ name });
+            if (!user) {
+                throw new Error('Doctor not found');
+            }
         }
         else {
             throw new Error('Invalid role');
@@ -49,12 +61,13 @@ let AuthService = class AuthService {
         console.log('Found user:', user);
         if (user && (await bcrypt.compare(password, user.password))) {
             const accessToken = this.generateAccessToken(user);
-            console.log('Access token: ', accessToken);
             return {
                 access_token: accessToken,
             };
+            console.log('Access token: ', accessToken);
         }
-        throw new Error('Invalid credentials');
+        else
+            throw new Error('Invalid credentials');
     }
     async loginWithGoogle(username, email) {
         let user = await this.userModel.findOne({ email });
@@ -71,7 +84,6 @@ let AuthService = class AuthService {
         const accessToken = this.generateAccessToken(user);
         return {
             access_token: accessToken,
-            user,
         };
     }
     generateAccessToken(user) {

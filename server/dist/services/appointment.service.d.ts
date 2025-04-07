@@ -15,4 +15,5 @@ export declare class AppointmentService {
     getAppointmentById(appointmentId: string): Promise<Appointment>;
     cancelAppointment(appointmentId: string): Promise<any>;
     updateAppointment(appointmentId: string, updateData: Partial<CreateAppointmentDto>): Promise<any>;
+    updateAppointmentStatus(appointmentId: string, status: boolean): Promise<Appointment>;
 }

@@ -39,4 +39,8 @@ __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CreateAppointmentDto.prototype, "appointmentTime", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Boolean)
+], CreateAppointmentDto.prototype, "status", void 0);
 //# sourceMappingURL=create-appoitment.dto.js.map

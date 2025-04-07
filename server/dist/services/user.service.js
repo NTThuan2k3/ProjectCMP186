@@ -43,7 +43,6 @@ let UserService = class UserService {
             .select('_id __v password IsDelete');
     }
     async getUserProfile(userId) {
-        console.log(`----------------------------${userId}`);
         return await this.userModel.findById(userId).select('-password -__v');
     }
 };
